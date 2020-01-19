@@ -18,11 +18,12 @@ class MadridCenterURLReader(URLReader):
 
         if len(address_list) > 0:
             address_html = "".join(str(v) for v in address_list)
-            print(address_list[0])
-            print(address_html)
 
             address_fragments = re.findall(r"<strong>((.|\n)*?)</strong>", address_html)
-            # for address in address_fragments:
-            #    print(address)
+            address = ""
+            for fragment in address_fragments:
+                address += fragment[0]
 
-        return html
+        print(address)
+
+        return address
