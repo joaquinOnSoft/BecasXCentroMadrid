@@ -13,7 +13,3 @@ class URLReader:
         resource .close()
 
         return html
-
-
-reader = URLReader("http://www.google.com")
-reader.read()
