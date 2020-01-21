@@ -8,4 +8,8 @@ class TestMadridCenterURLReader(TestCase):
         reader = MadridCenterURLReader("28041512")
         address = reader.read()
 
-        self.assertEqual(address, "calle san antonio2,28670,Villaviciosa de Odón.")
+        self.assertIsNotNone(address)
+        self.assertEqual("calle san antonio", address[MadridCenterURLReader.LABEL_ADDRESS])
+        self.assertEqual("2", address[MadridCenterURLReader.LABEL_NUMBER])
+        self.assertEqual("28670", address[MadridCenterURLReader.LABEL_ZIP])
+        self.assertEqual("Villaviciosa de Odón.", address[MadridCenterURLReader.LABEL_POPULATION])
