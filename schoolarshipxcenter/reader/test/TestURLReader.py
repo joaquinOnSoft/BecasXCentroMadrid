@@ -1,20 +1,13 @@
-import unittest
 from unittest import TestCase
-from ..CSVReader import CSVReader
-import os
+
+from ..URLReader import URLReader
 
 
-class TestCSVReader(TestCase):
-    """
-    @see https://realpython.com/python-csv/
-    """
+class TestURLReader(TestCase):
 
     def test_read(self):
-        reader = CSVReader("..\\resources\\19-01-2020-(178)-utf8.csv", ";")
-        rows = reader.read()
+        reader = URLReader("http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512")
+        html = reader.read()
 
-        self.assertIsNotNone(rows)
-        self.assertEqual(4040, len(rows))
-
-        self.assertEqual(rows[1].get("CODIGO CENTRO"), "28063027")
-        self.assertEqual(rows[1].get("TITULARIDAD"), "Público")
+        self.assertIsNotNone(html)
+        self.assertTrue(html.find("calle san antonio") > -1)

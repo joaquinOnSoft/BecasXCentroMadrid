@@ -1,10 +1,13 @@
 import getopt
 import sys
 
+from schoolarshipxcenter.consolidation.MadridCenterConsolidator import MadridCenterConsolidator
+
 
 def main(argv):
-    input_file = ''
-    output_file = ''
+    input_file = None
+    output_file = None
+
     try:
         opts, args = getopt.getopt(argv, "hi:o:", ["input=", "output="])
     except getopt.GetoptError:
@@ -18,8 +21,12 @@ def main(argv):
             input_file = arg
         elif opt in ("-o", "--output"):
             output_file = arg
+
     print('Input file is:', input_file)
     print('Output file is:', output_file)
+
+    if input_file is not None:
+        MadridCenterConsolidator.process(input_file, ";")
 
 
 if __name__ == "__main__":

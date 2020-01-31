@@ -1,3 +1,7 @@
 from . import TestCSVReader
-from . import TestURLReader
+from . import TestDWRClient
+from . import TestDWRClientMadridCenterDetails
+from . import TestDWRParam
 from . import TestMadridCenterURLReader
+from . import TestURLReader
+

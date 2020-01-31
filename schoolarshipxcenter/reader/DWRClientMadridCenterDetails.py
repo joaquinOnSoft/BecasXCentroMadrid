@@ -6,6 +6,10 @@ from schoolarshipxcenter.reader.DWRClient import DWRClient
 class DWRClientMadridCenterDetails(DWRClient):
     URL_BASE = "http://gestiona.madrid.org/wpad_pub/dwr/exec/GraficasDWRAccion.obtenerGrafica.dwr"
 
+    PARAM_S19_TOTAL_NUMBER_OF_STUDENTS_2018_2019 = "s19"
+    PARAM_S35_ESO_NUMBER_OF_STUDENTS_2018_2019 = "s35"
+    PARAM_S51_BACHILLERATO_NUMBER_OF_STUDENTS_2018_2019 = "s51"
+
     def __init__(self, center_id, url=None):
         self.center_id = center_id
         if url is None:
@@ -13,8 +17,7 @@ class DWRClientMadridCenterDetails(DWRClient):
         else:
             super().__init__(url)
 
-    @staticmethod
-    def __extract_data(content):
+    def __extract_data(self, content):
         """
         Extract statistic information from the DWR Ajax call returned by http://gestiona.madrid.org/
 
@@ -34,8 +37,16 @@ class DWRClientMadridCenterDetails(DWRClient):
             content = content.replace('var ', '')
             content = content.replace('\n', '')
             content_array = content.split(';')
-            print(content_array)
 
+            for item in content_array:
+                param_array = item.split('=')
+
+                if param_array[0] == self.PARAM_S19_TOTAL_NUMBER_OF_STUDENTS_2018_2019:
+                    data["# total alumnos 2017-2018"] = param_array[1]
+                elif param_array[0] == self.PARAM_S35_ESO_NUMBER_OF_STUDENTS_2018_2019:
+                    data["# alumnos ESO 2017-2018"] = param_array[1]
+                elif param_array[0] == self.PARAM_S51_BACHILLERATO_NUMBER_OF_STUDENTS_2018_2019:
+                    data["# alumnos Bachillerato 2017-2018"] = param_array[1]
         return data
 
     def read(self):
@@ -59,7 +70,6 @@ class DWRClientMadridCenterDetails(DWRClient):
         res = requests.post(self.url, data=post_data)
 
         if res is not None and res.status_code == 200:
-            content = res.text
-            self.__extract_data(res.text)
+            content = self.__extract_data(res.text)
 
         return content
