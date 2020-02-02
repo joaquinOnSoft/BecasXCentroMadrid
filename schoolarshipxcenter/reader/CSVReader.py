@@ -2,10 +2,15 @@ import csv
 
 
 class CSVReader:
-    """
-    @see https://realpython.com/python-csv/
-    """
+
     def __init__(self, file, delimiter=",", quoting=csv.QUOTE_NONE):
+        """
+        Read a CSV file
+        :param file: CSV file
+        :param delimiter: field delimiter. By default ','
+        :param quoting: Flag to indicate if the field value must be included between quotes
+        SEE  https://realpython.com/python-csv/
+        """
         self.file = file
         self.delimiter = delimiter
         self.quoting = quoting
@@ -21,7 +26,3 @@ class CSVReader:
                 rows.append(row)
 
             return rows
-
-
-
-
