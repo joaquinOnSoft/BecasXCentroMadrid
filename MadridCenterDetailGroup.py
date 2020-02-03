@@ -22,11 +22,8 @@ def main(argv):
         elif opt in ("-o", "--output"):
             output_file = arg
 
-    print('Input file is:', input_file)
-    print('Output file is:', output_file)
-
-    if input_file is not None:
-        MadridCenterConsolidator.process(input_file, ";")
+    if input_file is not None and output_file is not None:
+        MadridCenterConsolidator.process(input_file, output_file, ";")
 
 
 if __name__ == "__main__":
