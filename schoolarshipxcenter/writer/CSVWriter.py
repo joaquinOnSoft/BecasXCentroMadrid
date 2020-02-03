@@ -35,7 +35,7 @@ class CSVWriter:
                 num_lines += 1
 
                 for row in rows:
-                    print(row.keys())
+                    # print(row.keys())
                     writer.writerow(row)
                     num_lines += 1
 

@@ -1,6 +1,6 @@
 import time
-from urllib.error import HTTPError
 
+from urllib.error import HTTPError
 from urllib3.exceptions import IncompleteRead
 
 from schoolarshipxcenter.reader.CSVReader import CSVReader

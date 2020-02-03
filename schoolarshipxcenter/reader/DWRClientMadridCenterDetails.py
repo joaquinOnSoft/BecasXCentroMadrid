@@ -43,14 +43,12 @@ class DWRClientMadridCenterDetails(DWRClient):
                 if param_array is not None and len(param_array) == 2:
                     temp_data[param_array[0]] = param_array[1]
 
-            data = self.__extract_students_data(temp_data)
-            data = self.__create_columns_without_data(data)
+            data = self.__init_data_columns(data)
+            data = self.__extract_students_data(temp_data, data)
 
         return data
 
-    def __extract_students_data(self, params_array):
-        data = {}
-
+    def __extract_students_data(self, params_array, data):
         for key in params_array:
             if "nombreSerie" in key:
                 series_name_ref = params_array[key]
@@ -71,7 +69,10 @@ class DWRClientMadridCenterDetails(DWRClient):
                 # Recover column titles
                 while params_array["s" + str(index)] != "[]":
                     field_name = series_name + " " + params_array["s" + str(index)]
+
                     field_name = field_name.replace('"', '')
+                    field_name = field_name.replace("\\u00E1", "á")
+                    field_name = field_name.replace("\\u00F3", "ó")
 
                     field_value = params_array["s" + str(shift) + "[" + str(i) + "]"]
                     data[field_name] = params_array[field_value]
@@ -81,16 +82,16 @@ class DWRClientMadridCenterDetails(DWRClient):
 
         return data
 
-    def __create_columns_without_data(self, data):
-        fields = ["Total", "Educación Infantil Especial",
-                  "Educación Básica Obligatoria"
-                  "Infantil I Ciclo", "Infantil II Ciclo", "Primaria", "ESO", "Bachillerato"]
-        current_year = date.today().year
+    def __init_data_columns(self, data):
+        if data is not None:
+            fields = ["Total", "Educación Infantil Especial",
+                      "Educación Básica Obligatoria"
+                      "Infantil I Ciclo", "Infantil II Ciclo", "Primaria", "ESO", "Bachillerato"]
+            current_year = date.today().year
 
-        for field in fields:
-            for year in range(current_year - 5, current_year):
-                field_name = field + " " + str(year - 1) + "-" + str(year)
-                if field_name not in data:
+            for field in fields:
+                for year in range(current_year - 5, current_year):
+                    field_name = field + " " + str(year - 1) + "-" + str(year)
                     data[field_name] = ''
 
         return data
