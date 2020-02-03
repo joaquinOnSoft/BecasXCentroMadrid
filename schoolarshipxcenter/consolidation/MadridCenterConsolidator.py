@@ -1,4 +1,8 @@
 import time
+from urllib.error import HTTPError
+
+from urllib3.exceptions import IncompleteRead
+
 from schoolarshipxcenter.reader.CSVReader import CSVReader
 from schoolarshipxcenter.reader.DWRClientMadridCenterDetails import DWRClientMadridCenterDetails
 from schoolarshipxcenter.reader.MadridCenterURLReader import MadridCenterURLReader
@@ -50,10 +54,18 @@ class MadridCenterConsolidator:
 
                         retry = False
                     except ConnectionResetError:
-                        # An error 'ConnectionResetError' happens when you try a
-                        # few hundreds of consecutive calls to the server.
-                        print("Sleeping 5 seconds")
-                        time.sleep(5)
+                        MadridCenterConsolidator.__sleep(5)
+                    except IncompleteRead:
+                        MadridCenterConsolidator.__sleep(5)
+                    except HTTPError:
+                        MadridCenterConsolidator.__sleep(5)
 
             reader = CSVWriter(output_file, delimiter)
             reader.write(lines)
+
+    @staticmethod
+    def __sleep(secs):
+        # An error 'ConnectionResetError' happens when you try a
+        # few hundreds of consecutive calls to the server.
+        print(f"Sleeping {secs} seconds")
+        time.sleep(secs)

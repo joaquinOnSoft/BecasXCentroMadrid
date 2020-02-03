@@ -25,12 +25,17 @@ class CSVWriter:
                 for key in rows[0].keys():
                     fieldnames.append(key)
 
+                print("----------------------------------------")
+                print(fieldnames)
+                print("----------------------------------------")
+
                 writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=self.delimiter, quoting=self.quoting)
 
                 writer.writeheader()
                 num_lines += 1
 
                 for row in rows:
+                    print(row.keys())
                     writer.writerow(row)
                     num_lines += 1
 
