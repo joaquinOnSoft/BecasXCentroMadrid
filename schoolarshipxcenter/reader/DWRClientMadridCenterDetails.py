@@ -82,7 +82,9 @@ class DWRClientMadridCenterDetails(DWRClient):
         return data
 
     def __create_columns_without_data(self, data):
-        fields = ["Total", "Infantil I Ciclo", "Infantil II Ciclo", "Primaria", "ESO", "Bachillerato"]
+        fields = ["Total", "Educación Infantil Especial",
+                  "Educación Básica Obligatoria"
+                  "Infantil I Ciclo", "Infantil II Ciclo", "Primaria", "ESO", "Bachillerato"]
         current_year = date.today().year
 
         for field in fields:
