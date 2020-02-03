@@ -53,6 +53,8 @@ class MadridCenterConsolidator:
                             print(num_lines, row)
 
                         retry = False
+                    except ConnectionError:
+                        MadridCenterConsolidator.__sleep(5)
                     except ConnectionResetError:
                         MadridCenterConsolidator.__sleep(5)
                     except IncompleteRead:
