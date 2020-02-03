@@ -1,14 +1,11 @@
 import requests
+from datetime import date
 
 from schoolarshipxcenter.reader.DWRClient import DWRClient
 
 
 class DWRClientMadridCenterDetails(DWRClient):
     URL_BASE = "http://gestiona.madrid.org/wpad_pub/dwr/exec/GraficasDWRAccion.obtenerGrafica.dwr"
-
-    PARAM_S19_TOTAL_NUMBER_OF_STUDENTS_2018_2019 = "s19"
-    PARAM_S35_ESO_NUMBER_OF_STUDENTS_2018_2019 = "s35"
-    PARAM_S51_BACHILLERATO_NUMBER_OF_STUDENTS_2018_2019 = "s51"
 
     def __init__(self, center_id, url=None):
         self.center_id = center_id
@@ -33,20 +30,67 @@ class DWRClientMadridCenterDetails(DWRClient):
         :return: Dictionary with the statistic information
         """
         data = {}
+
         if content is not None:
             content = content.replace('var ', '')
             content = content.replace('\n', '')
             content_array = content.split(';')
 
+            temp_data = {}
+
             for item in content_array:
                 param_array = item.split('=')
+                if param_array is not None and len(param_array) == 2:
+                    temp_data[param_array[0]] = param_array[1]
 
-                if param_array[0] == self.PARAM_S19_TOTAL_NUMBER_OF_STUDENTS_2018_2019:
-                    data["# total alumnos 2017-2018"] = param_array[1]
-                elif param_array[0] == self.PARAM_S35_ESO_NUMBER_OF_STUDENTS_2018_2019:
-                    data["# alumnos ESO 2017-2018"] = param_array[1]
-                elif param_array[0] == self.PARAM_S51_BACHILLERATO_NUMBER_OF_STUDENTS_2018_2019:
-                    data["# alumnos Bachillerato 2017-2018"] = param_array[1]
+            data = self.__extract_students_data(temp_data)
+            data = self.__create_columns_without_data(data)
+
+        return data
+
+    def __extract_students_data(self, params_array):
+        data = {}
+
+        for key in params_array:
+            if "nombreSerie" in key:
+                series_name_ref = params_array[key]
+                series_name = params_array[series_name_ref]
+
+                index = int(series_name_ref.replace("s", ""))
+                # skip two positions
+                index += 2
+                init_index = index
+
+                while params_array["s" + str(index)] != "[]":
+                    index += 1
+
+                shift = index
+                index = init_index
+                i = 0
+
+                # Recover column titles
+                while params_array["s" + str(index)] != "[]":
+                    field_name = series_name + " " + params_array["s" + str(index)]
+                    field_name = field_name.replace('"', '')
+
+                    field_value = params_array["s" + str(shift) + "[" + str(i) + "]"]
+                    data[field_name] = params_array[field_value]
+
+                    index += 1
+                    i += 1
+
+        return data
+
+    def __create_columns_without_data(self, data):
+        fields = ["Total", "Infantil I Ciclo", "Infantil II Ciclo", "Primaria", "ESO", "Bachillerato"]
+        current_year = date.today().year
+
+        for field in fields:
+            for year in range(current_year - 5, current_year):
+                field_name = field + " " + str(year - 1) + "-" + str(year)
+                if field_name not in data:
+                    data[field_name] = ''
+
         return data
 
     def read(self):

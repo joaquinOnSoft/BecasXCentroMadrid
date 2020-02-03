@@ -1,5 +1,6 @@
 import time
 from schoolarshipxcenter.reader.CSVReader import CSVReader
+from schoolarshipxcenter.reader.DWRClientMadridCenterDetails import DWRClientMadridCenterDetails
 from schoolarshipxcenter.reader.MadridCenterURLReader import MadridCenterURLReader
 from schoolarshipxcenter.writer.CSVWriter import CSVWriter
 
@@ -31,12 +32,20 @@ class MadridCenterConsolidator:
                 while retry:
                     try:
                         # Recover Center extra information not included in the CSV file (e-mail)
-                        center = MadridCenterURLReader(center_id)
-                        res = center.read()
+                        center_basic_inf = MadridCenterURLReader(center_id)
+                        res = center_basic_inf.read()
 
                         if res is not None:
                             row.update(res)
                             lines.append(row)
+
+                            # Recover statistic information about the center (students by year)
+                            center_statistics = DWRClientMadridCenterDetails(center_id)
+                            res = center_statistics.read()
+
+                            if res is not None:
+                                row.update(res)
+
                             print(num_lines, row)
 
                         retry = False
@@ -45,13 +54,6 @@ class MadridCenterConsolidator:
                         # few hundreds of consecutive calls to the server.
                         print("Sleeping 5 seconds")
                         time.sleep(5)
-
-                #client = DWRClientMadridCenterDetails(center_id)
-                #res = client.read()
-
-                #if res is not None:
-                #    row.update(res)
-                #    print(row)
 
             reader = CSVWriter(output_file, delimiter)
             reader.write(lines)
