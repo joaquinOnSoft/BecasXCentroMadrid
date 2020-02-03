@@ -84,9 +84,11 @@ class DWRClientMadridCenterDetails(DWRClient):
 
     def __init_data_columns(self, data):
         if data is not None:
-            fields = ["Total", "Educación Infantil Especial",
-                      "Educación Básica Obligatoria"
-                      "Infantil I Ciclo", "Infantil II Ciclo", "Primaria", "ESO", "Bachillerato"]
+            fields = ["Total",
+                      "Educación Infantil Especial",
+                      "Infantil I Ciclo", "Infantil II Ciclo",
+                      "Educación Básica Obligatoria", "Primaria",
+                      "ESO", "Bachillerato", "Programa Formación Transición Vida Adulta"]
             current_year = date.today().year
 
             for field in fields:

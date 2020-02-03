@@ -47,3 +47,9 @@ class TestDRWClient(TestCase):
         self.assertEqual(res['Primaria 2018-2019'], '99')
         self.assertEqual(res['Educación Básica Obligatoria 2018-2019'], '12')
         self.assertEqual(res['Educación Infantil Especial 2018-2019'], '5')
+
+        self.assertEqual(res['Educación Básica Obligatoria 2014-2015'], '0')
+        self.assertEqual(res['Educación Básica Obligatoria 2015-2016'], '4')
+        self.assertEqual(res['Educación Básica Obligatoria 2016-2017'], '7')
+        self.assertEqual(res['Educación Básica Obligatoria 2017-2018'], '10')
+        self.assertEqual(res['Educación Básica Obligatoria 2018-2019'], '12')

@@ -50,7 +50,7 @@ class MadridCenterConsolidator:
                             if res is not None:
                                 row.update(res)
 
-                            print(num_lines, row)
+                            print(num_lines, " - ", row["CODIGO CENTRO"])
 
                         retry = False
                     except ConnectionError:
