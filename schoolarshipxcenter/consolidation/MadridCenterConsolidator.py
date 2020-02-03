@@ -16,6 +16,7 @@ class MadridCenterConsolidator:
         if rows is not None:
 
             lines = []
+            num_lines = 0
 
             for row in rows:
                 # Remove column 'None'. Returned by CSVReader. It's a useless column
@@ -24,6 +25,7 @@ class MadridCenterConsolidator:
                 # Recover center Id
                 center_id = row[MadridCenterConsolidator.FIELD_CENTER_ID]
 
+                num_lines += 1
                 retry = True
 
                 while retry:
@@ -34,9 +36,9 @@ class MadridCenterConsolidator:
 
                         if res is not None:
                             row.update(res)
-                            print(row)
+                            lines.append(row)
+                            print(num_lines, row)
 
-                        lines.append(row)
                         retry = False
                     except ConnectionResetError:
                         # An error 'ConnectionResetError' happens when you try a

@@ -17,7 +17,9 @@ class MadridCenterURLReader(URLReader):
         data = {self.LABEL_URL: self.url}
 
         mail_list = re.findall(r"<input TYPE='hidden' name='tlMail' value='(.*)'\/>", html)
-        if mail_list is not None:
+        if mail_list is not None and len(mail_list) > 0:
             data[self.LABEL_MAIL] = mail_list[0]
+        else:
+            data[self.LABEL_MAIL] = ""
 
         return data
