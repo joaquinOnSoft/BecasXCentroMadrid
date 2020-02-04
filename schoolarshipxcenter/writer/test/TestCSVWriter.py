@@ -1,3 +1,4 @@
+import csv
 from unittest import TestCase
 from ..CSVWriter import CSVWriter
 
@@ -12,7 +13,7 @@ class TestCSVReader(TestCase):
         row2 = {"Name": "Dennis Rodman", "Number": "91"}
         rows = [row1, row2]
 
-        reader = CSVWriter("..\\resources\\out_example.csv", ";")
+        reader = CSVWriter("..\\resources\\out_example.csv", ";", csv.QUOTE_ALL)
         num_lines = reader.write(rows)
 
         self.assertEqual(3, num_lines)

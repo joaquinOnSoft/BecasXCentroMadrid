@@ -1,3 +1,4 @@
+import csv
 import time
 
 from urllib.error import HTTPError
@@ -50,7 +51,7 @@ class MadridCenterConsolidator:
                             if res is not None:
                                 row.update(res)
 
-                            print(num_lines, " - ", row["CODIGO CENTRO"])
+                            print(f"{num_lines} - {row['CODIGO CENTRO']}")
 
                         retry = False
                     except ConnectionError:
@@ -62,7 +63,7 @@ class MadridCenterConsolidator:
                     except HTTPError:
                         MadridCenterConsolidator.__sleep(5)
 
-            reader = CSVWriter(output_file, delimiter)
+            reader = CSVWriter(output_file, delimiter, csv.QUOTE_ALL)
             reader.write(lines)
 
     @staticmethod

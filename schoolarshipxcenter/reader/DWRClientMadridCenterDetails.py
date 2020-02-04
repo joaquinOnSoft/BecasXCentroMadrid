@@ -90,8 +90,9 @@ class DWRClientMadridCenterDetails(DWRClient):
                       "Educación Básica Obligatoria", "Primaria",
                       "ESO", "Bachillerato",
                       "FP GM", "FP GS", "FPB",
-                      "PCPI: Módulos Voluntarios",
-                      "Programa Formación Transición Vida Adulta"]
+                      "PCPI: Módulos Voluntarios", "PCPI: Especial",
+                      "Programa Formación Transición Vida Adulta",
+                      "Programas Profesionales Modalidad Especial"]
             current_year = date.today().year
 
             for field in fields:
