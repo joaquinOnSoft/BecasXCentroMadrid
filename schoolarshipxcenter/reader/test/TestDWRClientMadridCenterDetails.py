@@ -53,3 +53,21 @@ class TestDRWClient(TestCase):
         self.assertEqual(res['Educación Básica Obligatoria 2016-2017'], '7')
         self.assertEqual(res['Educación Básica Obligatoria 2017-2018'], '10')
         self.assertEqual(res['Educación Básica Obligatoria 2018-2019'], '12')
+
+    def test_request_FP(self):
+        res = self.get_center(28041354)
+
+        self.assertIsNotNone(res)
+        self.assertEqual(res['FP GM 2018-2019'], '71')
+        self.assertEqual(res['FP GS 2018-2019'], '0')
+        self.assertEqual(res['FPB 2018-2019'], '64')
+
+    def test_request_PCPI(self):
+        res = self.get_center(28041354)
+
+        self.assertIsNotNone(res)
+        self.assertEqual(res['PCPI: Módulos Voluntarios 2018-2019'], '0')
+        self.assertEqual(res['PCPI: Módulos Voluntarios 2017-2018'], '0')
+        self.assertEqual(res['PCPI: Módulos Voluntarios 2016-2017'], '0')
+        self.assertEqual(res['PCPI: Módulos Voluntarios 2015-2016'], '0')
+        self.assertEqual(res['PCPI: Módulos Voluntarios 2014-2015'], '12')
