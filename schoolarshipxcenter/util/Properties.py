@@ -19,6 +19,6 @@ class Properties:
 
     def get(self, name):
         if name in self.properties.keys():
-            return self.keys[name]
+            return self.properties[name]
         else:
             return None
