@@ -6,12 +6,12 @@ from urllib3.exceptions import IncompleteRead
 
 from schoolarshipxcenter.reader.CSVReader import CSVReader
 from schoolarshipxcenter.reader.DWRClientMadridCenterDetails import DWRClientMadridCenterDetails
+from schoolarshipxcenter.reader.GeocodeReader import GeocodeReader
 from schoolarshipxcenter.reader.MadridCenterURLReader import MadridCenterURLReader
 from schoolarshipxcenter.writer.CSVWriter import CSVWriter
 
 
 class MadridCenterConsolidator:
-
     FIELD_CENTER_ID = "CODIGO CENTRO"
 
     @staticmethod
@@ -42,7 +42,6 @@ class MadridCenterConsolidator:
 
                         if res is not None:
                             row.update(res)
-                            lines.append(row)
 
                             # Recover statistic information about the center (students by year)
                             center_statistics = DWRClientMadridCenterDetails(center_id)
@@ -51,7 +50,17 @@ class MadridCenterConsolidator:
                             if res is not None:
                                 row.update(res)
 
-                            print(f"{num_lines} - {row['CODIGO CENTRO']}")
+                            # Recover coordinates from the Center address
+                            address = MadridCenterConsolidator.__get_address(row)
+                            geo = GeocodeReader(address)
+                            coordinates = geo.read()
+                            if coordinates is None:
+                                coordinates = {'lat': '', 'lng': ''}
+
+                            row.update(coordinates)
+
+                            lines.append(row)
+                            print(f"{num_lines} - {row['CODIGO CENTRO']} ({row['lat']}, {row['lng']}) {address}")
 
                         retry = False
                     except ConnectionError:
@@ -65,6 +74,11 @@ class MadridCenterConsolidator:
 
             reader = CSVWriter(output_file, delimiter, csv.QUOTE_ALL)
             reader.write(lines)
+
+    @staticmethod
+    def __get_address(center):
+        address = f"{center['DOMICILIO']}, {center['COD. POSTAL']}, {center['MUNICIPIO']}"
+        return address
 
     @staticmethod
     def __sleep(secs):
