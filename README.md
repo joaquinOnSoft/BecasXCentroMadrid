@@ -24,8 +24,18 @@ Por ejemplo, para el centro :
    [http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512](http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512)
 
 Podemos extraer información adicional, como:
+
    * e-mail (no se incluye entre los datos exportados en el .csv) 
    * Datos estadíticos de alumnos matrículados en los últimos 5 años (no se carga por defecto, es una llamada AJAX) 
+  
+Adicionalmente se obtienen las coordenadas de latitud y longitud a partir de la dirección del centro: 
+   * Latitud
+   * Longitud
+
+> NOTA: El fichero **grant.properties** incluye el API Key del  [Geocoding API
+ de Google](https://developers.google.com/maps/documentation/geocoding/start). 
+ Se utiliza para hacer el geocoding inverso y obtener las coordenadas 
+ a partir de la dirección del centro. 
 
 ### Datos de Renta
 
@@ -56,8 +66,3 @@ Ejemplo de invocación:
 ```
 python.exe MadridCenterDetailGroup.py -i resources\19-01-2020-(178)-utf8.csv -o resources\output\19-01-2020-(178)-utf8-extended-gps.csv
 ```
-
-> NOTA: El fichero **grant.properties** incluye el API Key del  [Geocoding API
- de Google](https://developers.google.com/maps/documentation/geocoding/start). 
- Se utiliza para hacer el geocoding inverso y obtener las coordenadas 
- a partir de la dirección del centro. 
