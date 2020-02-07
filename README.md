@@ -18,6 +18,7 @@ Se decarga un .csv codificado en ANSI. Se ha convertido a UTF-8 para su procesam
 Para ver/sacar datos de un centro una vez conocido el código, basta con ponerlo así en la url:
 
    http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=**[ID_CENTRO]**
+   
 Por ejemplo, para el centro :
 
    [http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512](http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512)
