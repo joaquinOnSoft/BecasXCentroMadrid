@@ -35,7 +35,7 @@ Adicionalmente se obtienen las coordenadas de latitud y longitud a partir de la 
 > NOTA: El fichero **grant.properties** incluye el API Key del  [Geocoding API
  de Google](https://developers.google.com/maps/documentation/geocoding/start). 
  Se utiliza para hacer el geocoding inverso y obtener las coordenadas 
- a partir de la dirección del centro. 
+ a partir de la dirección del centro. **Hay que añadir un API valida para que funcione correctamente**
 
 ### Datos de Renta
 
