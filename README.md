@@ -35,3 +35,28 @@ Los datos de la **Renta por persona** y **Renta por hogar** se han sacados de:
 ## Calculos
 
 % becados (calculado entre dato nº becas / nº bach 17-18)
+
+## Ejecución del programa
+
+El programa **MadridCenterDetailGroup.py** genera un fichero .csv con información
+estadística de los alumnos matriculados en los últimos 5 años y las coordenadas de
+latitud y longitud a partir del fichero de entrada (El .csv descargado desde el 
+ **Buscador de Colegios (Comunidad de Madrid)**)
+
+El programa acepta los siguientes parámetros:
+
+ * **-i** Fichero .csv de entrada (El .csv descargado desde el 
+ **Buscador de Colegios (Comunidad de Madrid)**)
+ * **-o** Fichero .csv de salida con información estadística sobre los 
+ alumnos matriculados y las coordenadas de latitud y longitud de cada centro
+ 
+Ejemplo de invocación:
+
+```
+python.exe MadridCenterDetailGroup.py -i resources\19-01-2020-(178)-utf8.csv -o resources\output\19-01-2020-(178)-utf8-extended-gps.csv
+```
+
+> NOTA: El fichero **grant.properties** incluye el API Key del  [Geocoding API
+ de Google](https://developers.google.com/maps/documentation/geocoding/start). 
+ Se utiliza para hacer el geocoding inverso y obtener las coordenadas 
+ a partir de la dirección del centro. 
