@@ -1,7 +1,7 @@
 import csv
 import time
 
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from urllib3.exceptions import IncompleteRead
 
 from schoolarshipxcenter.reader.CSVReader import CSVReader
@@ -70,6 +70,10 @@ class MadridCenterConsolidator:
                     except IncompleteRead:
                         MadridCenterConsolidator.__sleep(5)
                     except HTTPError:
+                        MadridCenterConsolidator.__sleep(5)
+                    except URLError:
+                        MadridCenterConsolidator.__sleep(5)
+                    except TimeoutError:
                         MadridCenterConsolidator.__sleep(5)
 
             reader = CSVWriter(output_file, delimiter, csv.QUOTE_ALL)
