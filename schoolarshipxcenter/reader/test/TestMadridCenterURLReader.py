@@ -17,3 +17,10 @@ class TestMadridCenterURLReader(TestCase):
 
         self.assertIsNotNone(data)
         self.assertEqual("", data[MadridCenterURLReader.LABEL_MAIL])
+
+    def test_read_owner(self):
+        reader = MadridCenterURLReader("28020077")
+        data = reader.read()
+
+        self.assertIsNotNone(data)
+        self.assertEqual("COLEGIO BRISTOL S.A.", data[MadridCenterURLReader.LABEL_OWNER])

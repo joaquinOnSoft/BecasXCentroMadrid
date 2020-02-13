@@ -60,7 +60,7 @@ class MadridCenterConsolidator:
                             row.update(coordinates)
 
                             lines.append(row)
-                            print(f"{num_lines} - {row['CODIGO CENTRO']} ({row['lat']}, {row['lng']}) {address} - {row['TITULAR']}")
+                            print(f"{num_lines} - {row['CODIGO CENTRO']} ({row['lat']}, {row['lng']}) {address}")
 
                         retry = False
                     except ConnectionError:
