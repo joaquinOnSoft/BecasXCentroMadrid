@@ -1,5 +1,3 @@
-import csv
-
 from schoolarshipxcenter.reader.CSVReader import CSVReader
 
 

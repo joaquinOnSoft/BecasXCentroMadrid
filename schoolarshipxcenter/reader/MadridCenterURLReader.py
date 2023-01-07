@@ -1,9 +1,10 @@
-from schoolarshipxcenter.reader.URLReader import URLReader
 import re
+
+from schoolarshipxcenter.reader.URLReader import URLReader
 
 
 class MadridCenterURLReader(URLReader):
-    URL_BASE = "http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro="
+    URL_BASE = "http://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro="
 
     LABEL_MAIL = "E-MAIL"
     LABEL_URL = "URL"

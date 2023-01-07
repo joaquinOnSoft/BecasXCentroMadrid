@@ -1,3 +1,3 @@
-from . import reader
 from . import consolidation
+from . import reader
 

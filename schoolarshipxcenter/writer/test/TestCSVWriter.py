@@ -1,5 +1,6 @@
 import csv
 from unittest import TestCase
+
 from ..CSVWriter import CSVWriter
 
 

@@ -1,27 +1,54 @@
 # BecasXCentroMadrid
 Preparación de datos para analizar la distribución de becas por Centro en la Comunidad de Madrid
 
+> **NOTA**: La Comunidad de Madrid ha cambiado el dominio que utiliza a finales de 2022. 
+> Antes utilizaba la URL **gestiona3.madrid.org**, ahora 
+> utiliza el dominio **gestiona.comunidad.madrid**
+
 ## Origen de los datos
 
 ### Datos de Centros
 * **Datos centros**: están sacados de la web. Cómo se obtiene (están todos los centros, se podría filtrar)
-1. [Buscador de Colegios (Comunidad de Madrid)](http://www.madrid.org/wpad_pub/run/j/MostrarConsultaGeneral.icm)
-2. Se marca "¿Quieres incluir otros criterios?"
-3. Marco las 5 zonas en "¿EN QUÉ ZONA? 
-4. Marco "FINALIZAR Y VER LISTADO"
-5. El número de centros obtenidos es 4057. En pantalla sólo se muestran los 100 primeros. Obtenga el listado completo en "DESCARGAR LISTADO".
+1. [Buscador de Colegios (Comunidad de Madrid) (A partir de 2023)](https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarConsultaGeneral.icm)
+2. Se marca `¿Quieres incluir otros criterios?`
+3. Marco las 5 zonas en `¿EN QUÉ ZONA?` 
 
-Se decarga un .csv codificado en ANSI. Se ha convertido a UTF-8 para su procesamiento en Phyton.
+![Buscador de Colegio - ¿EN QUÉ ZONA?](images/buscador-de-colegios-en-que-zona.png)
+
+5. Marco `FINALIZAR Y VER LISTADO`
+
+![Buscador de Colegio - Finalizar y ver listado](images/buscador-de-colegios-finalizar-y-ver-resultados.png)
+
+6. El número de centros obtenidos es 4032, 23 centros menos que en Enero de 2019 (4057). En pantalla splo se muestran los 100 primeros. Obtenga el listado completo en `DESCARGAR LISTADO`.
+
+Se decarga un .csv codificado con `windows 1252`. Se ha convertido a `UTF-8` para su procesamiento en Phyton.
+
+También se elimina la primera línea del fichero, ya que no aporta información útil. Es esta:
+
+```
+CONSULTA DE CENTROS Y SERVICIOS EDUCATIVOS;;;;;;;;;;;;;;
+```
+
+Así el fichero resultante tiene este aspecto:
+
+```
+AREA TERRITORIAL;CODIGO CENTRO;TIPO DE CENTRO;CENTRO;DOMICILIO;MUNICIPIO;DISTRITO MUNICIPAL;COD. POSTAL;TELEFONO;FAX;EMAIL;EMAIL2;TITULARIDAD
+Madrid-Oeste;28060646;EEI;ACHALAY;Avenida De Isabel De Farnesio, 14 ;Boadilla del Monte;-;28660;916326518;-;eei.achalay.boadilla@educa.madrid.org;achalay-@hotmail.com;Público;
+Madrid-Este;28063027;EEI;ACUARELA;Avenida Del Somorrostro, 193 ;San Fernando de Henares;-;28830;916694580;-;eei.acuarela.sanfernando@educa.madrid.org;-;Público;
+
+...
+
+```
 
 #### Información adicional de un Centro
 
 Para ver/sacar datos de un centro una vez conocido el código, basta con ponerlo así en la url:
 
-   http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro= **[ID_CENTRO]**
+   https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro= **[ID_CENTRO]**
    
-Por ejemplo, para el centro :
+Por ejemplo, para el centro:
 
-   [http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512](http://gestiona.madrid.org/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512)
+   [https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512](https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512)
 
 Podemos extraer información adicional, como:
 
@@ -64,5 +91,5 @@ El programa acepta los siguientes parámetros:
 Ejemplo de invocación:
 
 ```
-python.exe MadridCenterDetailGroup.py -i resources\19-01-2020-(178)-utf8.csv -o resources\output\19-01-2020-(178)-utf8-extended-gps.csv
+python.exe MadridCenterDetailGroup.py -i resources\07-01-2023-(408)-utf8.csv -o resources\output\07-01-2023-(408)-utf8-extended-gps.csv
 ```
