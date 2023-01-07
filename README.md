@@ -21,15 +21,16 @@ Preparación de datos para analizar la distribución de becas por Centro en la C
 
 6. El número de centros obtenidos es 4032, 23 centros menos que en Enero de 2019 (4057). En pantalla splo se muestran los 100 primeros. Obtenga el listado completo en `DESCARGAR LISTADO`.
 
-Se decarga un .csv codificado con `windows 1252`. Se ha convertido a `UTF-8` para su procesamiento en Phyton.
+7. Se descarga un fichero **.csv** codificado con `windows 1252`. Se ha convertido a `UTF-8` para su 
+   posterior procesamiento en Phyton.
 
-También se elimina la primera línea del fichero, ya que no aporta información útil. Es esta:
+   También se elimina la primera línea del fichero, ya que no aporta información útil. Es esta:
 
 ```
 CONSULTA DE CENTROS Y SERVICIOS EDUCATIVOS;;;;;;;;;;;;;;
 ```
 
-Así el fichero resultante tiene este aspecto:
+   Así el fichero resultante tiene este aspecto:
 
 ```
 AREA TERRITORIAL;CODIGO CENTRO;TIPO DE CENTRO;CENTRO;DOMICILIO;MUNICIPIO;DISTRITO MUNICIPAL;COD. POSTAL;TELEFONO;FAX;EMAIL;EMAIL2;TITULARIDAD
@@ -40,13 +41,33 @@ Madrid-Este;28063027;EEI;ACUARELA;Avenida Del Somorrostro, 193 ;San Fernando de 
 
 ```
 
+> NOTA: Para la conversión de `windows 1252` a `UTF-8` se ha utilizado la web 
+> [FreeFormatter.com](https://www.freeformatter.com/convert-file-encoding.html)
+
+### Formato del fichero de centros
+
+El fichero de centros es un `.csv` delimitado por `;` y codificado con `UTF-8`. 
+Incluye una primera línea/fila que incluye los nombres de los diferentes campos:
+
+   - AREA TERRITORIAL
+   - CODIGO CENTRO
+   - TIPO DE CENTRO
+   - CENTRO
+   - DOMICILIO
+   - MUNICIPIO
+   - DISTRITO MUNICIPAL
+   - COD. POSTAL
+   - TELEFONO
+   - FAX
+   - TITULARIDAD
+
 #### Información adicional de un Centro
 
-Para ver/sacar datos de un centro una vez conocido el código, basta con ponerlo así en la url:
+Para ver/extraer datos de un centro una vez conocido el código, basta con ponerlo así en la url:
 
    https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro= **[ID_CENTRO]**
    
-Por ejemplo, para el centro:
+Por ejemplo, para consultar el centro *28041512 (IES CALATALIFA)*:
 
    [https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512](https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarFichaCentro.icm?cdCentro=28041512)
 
@@ -68,7 +89,8 @@ Adicionalmente se obtienen las coordenadas de latitud y longitud a partir de la 
 
 Los datos de la **Renta por persona** y **Renta por hogar** se han sacados de:
  
-   [¿Escuela de ricos, escuela de pobres? Cómo la concertada y la pública segregan por clase social](https://elpais.com/economia/2019/09/11/actualidad/1568217626_928704.html)
+   - Datos de **2019**: [¿Escuela de ricos, escuela de pobres? Cómo la concertada y la pública segregan por clase social](https://elpais.com/economia/2019/09/11/actualidad/1568217626_928704.html)
+   - Datos de **2021**: [El mapa de la renta de los españoles, calle a ca](https://elpais.com/economia/2021-04-29/el-mapa-de-la-renta-de-los-espanoles-calle-a-calle.html)
 
 ## Calculos
 

@@ -10,9 +10,9 @@ def print_help():
     print('\tMadridCenterGrantDetail.py -c <centers_file> -g <grant_file> -o output')
     print('where:')
     print('\t-h: Print this help')
-    print('\t-i: (Mandatory) Centers file (csv with a list of Centers (Schools, High schools...')
-    print('\t-g: (Mandatory) Grants file (csv with a list of Grants by Center')
-    print('\t-o: (Mandatory) output file (csv file which will contains extended information for each center')
+    print('\t-c --center: (Mandatory) Centers file (csv with a list of Centers (Schools, High schools...')
+    print('\t-g --grant: (Mandatory) Grants file (csv with a list of Grants by Center')
+    print('\t-o --output: (Mandatory) output file (csv file which will contains extended information for each center')
 
 
 def main(argv):
@@ -27,7 +27,7 @@ def main(argv):
         sys.exit(2)
 
     for opt, arg in opts:
-        if opt == '-h':
+        if opt in ("-h", "--help"):
             print_help()
             sys.exit()
         elif opt in ("-c", "--center"):
