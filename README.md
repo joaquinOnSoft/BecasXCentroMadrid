@@ -19,7 +19,7 @@ Preparación de datos para analizar la distribución de becas por Centro en la C
 
 ![Buscador de Colegio - Finalizar y ver listado](images/buscador-de-colegios-finalizar-y-ver-resultados.png)
 
-6. El número de centros obtenidos es 4032, 23 centros menos que en Enero de 2019 (4057). En pantalla splo se muestran los 100 primeros. Obtenga el listado completo en `DESCARGAR LISTADO`.
+6. El número de centros obtenidos es 4032, 23 centros menos que en Enero de 2019 (4057). En pantalla solo se muestran los 100 primeros. Obtenga el listado completo en `DESCARGAR LISTADO`.
 
 7. Se descarga un fichero **.csv** codificado con `windows 1252`. Se ha convertido a `UTF-8` para su 
    posterior procesamiento en Phyton.
@@ -90,7 +90,7 @@ Adicionalmente se obtienen las coordenadas de latitud y longitud a partir de la 
 Los datos de la **Renta por persona** y **Renta por hogar** se han sacados de:
  
    - Datos de **2019**: [¿Escuela de ricos, escuela de pobres? Cómo la concertada y la pública segregan por clase social](https://elpais.com/economia/2019/09/11/actualidad/1568217626_928704.html)
-   - Datos de **2021**: [El mapa de la renta de los españoles, calle a ca](https://elpais.com/economia/2021-04-29/el-mapa-de-la-renta-de-los-espanoles-calle-a-calle.html)
+   - Datos de **2021**: [El mapa de la renta de los españoles, calle a calle](https://elpais.com/economia/2021-04-29/el-mapa-de-la-renta-de-los-espanoles-calle-a-calle.html)
 
 ## Calculos
 
