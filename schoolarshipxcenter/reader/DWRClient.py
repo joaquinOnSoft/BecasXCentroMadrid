@@ -4,6 +4,10 @@ from schoolarshipxcenter.reader.DWRParam import DWRParam
 
 
 class DWRClient:
+    """
+    Direct Web Remoting, or DWR, is a Java open-source library that helps developers
+    write web sites that include Ajax technology.
+    """
     PARAM_SCRIPT_NAME = "c0-scriptName"
     PARAM_METHOD_NAME = "c0-methodName"
 

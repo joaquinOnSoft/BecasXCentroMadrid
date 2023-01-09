@@ -1,3 +1,5 @@
+import os
+import pathlib
 from unittest import TestCase
 
 from ..CSVReader import CSVReader
@@ -9,7 +11,10 @@ class TestCSVReader(TestCase):
     """
 
     def test_read(self):
-        reader = CSVReader("..\\resources\\19-01-2020-(178)-utf8.csv", ";")
+        parent = pathlib.Path(__file__).parent.resolve()
+        reader = CSVReader(
+            os.path.join(str(parent), "..", "..", "..", "resources", "19-01-2020-(178)-utf8.csv"),
+            ";")
         rows = reader.read()
 
         self.assertIsNotNone(rows)

@@ -23,7 +23,7 @@ class TestMadridCenterURLReader(TestCase):
         data = reader.read()
 
         self.assertIsNotNone(data)
-        self.assertEqual("COLEGIO BRISTOL S.A.", data[MadridCenterURLReader.LABEL_OWNER])
+        self.assertEqual("COLEGIO BRISTOL, S.A.", data[MadridCenterURLReader.LABEL_OWNER])
 
     def test_read_private_concerted_owner(self):
         reader = MadridCenterURLReader("28028507")

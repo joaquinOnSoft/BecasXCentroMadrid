@@ -87,10 +87,11 @@ Adicionalmente se obtienen las coordenadas de latitud y longitud a partir de la 
 
 ### Datos de Renta
 
-Los datos de la **Renta por persona** y **Renta por hogar** se han sacados de:
+Los datos de la **Renta por persona** y **Renta por hogar** se han sacado de:
  
    - Datos de **2019**: [¿Escuela de ricos, escuela de pobres? Cómo la concertada y la pública segregan por clase social](https://elpais.com/economia/2019/09/11/actualidad/1568217626_928704.html)
    - Datos de **2021**: [El mapa de la renta de los españoles, calle a calle](https://elpais.com/economia/2021-04-29/el-mapa-de-la-renta-de-los-espanoles-calle-a-calle.html)
+   - Datos: [Indicadores de renta media y mediana](https://www.ine.es/jaxiT3/Tabla.htm?t=31097)
 
 ## Calculos
 

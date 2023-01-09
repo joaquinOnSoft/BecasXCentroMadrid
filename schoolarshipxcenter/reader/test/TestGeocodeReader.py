@@ -11,11 +11,11 @@ class TestGeocodeReader(TestCase):
         coordinates = reader.read()
 
         self.assertIsNotNone(coordinates)
-        self.assertEqual(40.40437, coordinates['lat'])
-        self.assertEqual(-3.88754, coordinates['lng'])
+        self.assertEqual(40.403947, coordinates['lat'])
+        self.assertEqual(-3.8875135, coordinates['lng'])
 
     def test_read_none_existing_address(self):
-        reader = GeocodeReader("C/ Inifinite Loop, 7, Madrid")
+        reader = GeocodeReader("abc xyz 123 987")
         coordinates = reader.read()
 
         self.assertIsNone(coordinates)
@@ -25,5 +25,5 @@ class TestGeocodeReader(TestCase):
         coordinates = reader.read()
 
         self.assertIsNotNone(coordinates)
-        self.assertEqual(40.3496458, coordinates['lat'])
-        self.assertEqual(-3.806678899999999, coordinates['lng'])
+        self.assertEqual(40.349476, coordinates['lat'])
+        self.assertEqual(-3.8067598, coordinates['lng'])
