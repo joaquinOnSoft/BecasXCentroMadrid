@@ -3,7 +3,7 @@ from unittest import TestCase
 from ..DWRClientMadridCenterDetails import DWRClientMadridCenterDetails
 
 
-class TestDRWClient(TestCase):
+class TestDWRClientMadridCenterDetails(TestCase):
 
     @staticmethod
     def getCenter(center_id):
