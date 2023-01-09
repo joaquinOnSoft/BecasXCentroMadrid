@@ -3,7 +3,7 @@ from unittest import TestCase
 from ..DWRParam import DWRParam
 
 
-class TestDRWCParam(TestCase):
+class TestDRWParam(TestCase):
 
     def test_str(self):
         param = DWRParam("c0-e1", 28041512, DWRParam.TYPE_STRING)

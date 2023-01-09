@@ -4,7 +4,7 @@ from unittest import TestSuite
 from schoolarshipxcenter.reader.test.TestCSVReader import TestCSVReader
 from schoolarshipxcenter.reader.test.TestDWRClient import TestDRWClient
 from schoolarshipxcenter.reader.test.TestDWRClientMadridCenterDetails import TestDWRClientMadridCenterDetails
-from schoolarshipxcenter.reader.test.TestDWRParam import TestDRWCParam
+from schoolarshipxcenter.reader.test.TestDWRParam import TestDRWParam
 from schoolarshipxcenter.reader.test.TestGeocodeReader import TestGeocodeReader
 from schoolarshipxcenter.reader.test.TestMadridCenterURLReader import TestMadridCenterURLReader
 
@@ -24,7 +24,7 @@ def suite():
     test_suite.addTest(TestDWRClientMadridCenterDetails('testRequestPCPI'))
     test_suite.addTest(TestDWRClientMadridCenterDetails('testRequestPCPIEspecial'))
 
-    test_suite.addTest(TestDRWCParam('test_str'))
+    test_suite.addTest(TestDRWParam('test_str'))
 
     test_suite.addTest(TestGeocodeReader('test_read'))
     test_suite.addTest(TestGeocodeReader('test_read_none_existing_address'))
