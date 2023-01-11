@@ -6,7 +6,8 @@ from schoolarshipxcenter.reader.DWRClient import DWRClient
 
 
 class DWRClientMadridCenterDetails(DWRClient):
-    URL_BASE = "http://gestiona.comunidad.madrid/wpad_pub/dwr/exec/GraficasDWRAccion.obtenerGrafica.dwr"
+
+    URL_BASE = "https://gestiona.comunidad.madrid/wpad_pub/dwr/exec/GraficasDWRAccion.obtenerGrafica.dwr"
 
     def __init__(self, center_id, url=None):
         self.center_id = center_id
@@ -109,13 +110,13 @@ class DWRClientMadridCenterDetails(DWRClient):
         self.add_param("callCount", 1)
         self.set_script_name("GraficasDWRAccion")
         self.set_method_name("obtenerGrafica")
-        self.add_param("c0-id", "8195_1580332252722")
+        self.add_param("c0-id", "7176_1673473930106")
         self.add_string_param("c0-e1", self.center_id)
         self.add_string_param("c0-e2", "TODO")
         self.add_string_param("c0-e3", 1)
         self.add_string_param("c0-e4", 1)
-        param0 = "{cdCentro:reference:c0-e1, cdnivelEducativo:reference:c0-e2, cdGrafica:reference:c0-e3, " \
-                 "tipoGrafica:reference:c0-e4}"
+        param0 = "Object:{cdCentro:reference:c0-e1, cdnivelEducativo:reference:c0-e2, cdGrafica:reference:c0-e3, " \
+                 "tipoGrafica:reference:c0-e4} "
         self.add_object_param("c0-param0", param0)
         self.add_param("xml", "true")
 
