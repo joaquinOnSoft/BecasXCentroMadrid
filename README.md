@@ -8,7 +8,7 @@ Preparación de datos para analizar la distribución de becas por Centro en la C
 ## Origen de los datos
 
 ### Datos de Centros
-* **Datos centros**: están sacados de la web. Cómo se obtiene (están todos los centros, se puede filtrar)
+**Datos centros**: están sacados de la web. Cómo se obtiene (están todos los centros, se puede filtrar)
 1. [Buscador de Colegios (Comunidad de Madrid) (A partir de 2023)](https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarConsultaGeneral.icm)
 2. Se marca `¿Quieres incluir otros criterios?`
 3. Marco las 5 zonas en `¿EN QUÉ ZONA?` 
@@ -93,11 +93,13 @@ Los datos de la **Renta por persona** y **Renta por hogar** se han sacado de:
    - Datos de **2021**: [El mapa de la renta de los españoles, calle a calle](https://elpais.com/economia/2021-04-29/el-mapa-de-la-renta-de-los-espanoles-calle-a-calle.html)
    - Datos: [Indicadores de renta media y mediana](https://www.ine.es/jaxiT3/Tabla.htm?t=31097)
 
-## Calculos
+## Cálculos
 
 % becados (calculado entre dato nº becas / nº bach 17-18)
 
 ## Ejecución del programa
+
+### Datos de los centros enriquecidos
 
 El programa **MadridCenterDetailGroup.py** genera un fichero .csv con información
 estadística de los alumnos matriculados en los últimos 5 años y las coordenadas de
@@ -110,6 +112,25 @@ El programa acepta los siguientes parámetros:
  **Buscador de Colegios (Comunidad de Madrid)**)
  * **-o** Fichero .csv de salida con información estadística sobre los 
  alumnos matriculados y las coordenadas de latitud y longitud de cada centro
+ 
+Ejemplo de invocación:
+
+```
+python.exe MadridCenterDetailGroup.py -i resources\07-01-2023-(408)-utf8.csv -o resources\output\07-01-2023-(408)-utf8-extended-gps.csv
+```
+
+### Cruce de datos de centros con importe de becas
+
+El programa **MadridCenterGrantDetail.py** mezcla un csv con los centros 
+y las subvenciones por centro en un único fichero
+
+El programa acepta los siguientes parámetros:
+
+ * **-h** **--help**: Imprime la ayuda
+ * **-c** **--center**: (Obligatorio) Fichero de Centros (csv con un listado de Centros (Colegios, Institutos...)
+ * **-g** **--grant**: (Obligatorio) Archivo de subvenciones (csv con una lista de subvenciones por Centro)
+ * **-o** **--output**: (Obligatorio) archivo de salida (archivo csv que contendrá información ampliada 
+   para cada centro)
  
 Ejemplo de invocación:
 
