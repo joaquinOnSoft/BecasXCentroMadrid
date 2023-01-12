@@ -135,5 +135,5 @@ El programa acepta los siguientes parámetros:
 Ejemplo de invocación:
 
 ```
-python.exe MadridCenterDetailGroup.py -i resources\07-01-2023-(408)-utf8.csv -o resources\output\07-01-2023-(408)-utf8-extended-gps.csv
+python.exe MadridCenterGrantDetail.py -c <centers_file> -g <grant_file> -o output
 ```
