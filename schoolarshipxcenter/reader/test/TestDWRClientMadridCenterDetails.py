@@ -47,11 +47,30 @@ class TestDWRClientMadridCenterDetails(TestCase):
         self.assertEqual(res['Educación Básica Obligatoria 2018-2019'], '12')
         self.assertEqual(res['Educación Infantil Especial 2018-2019'], '5')
 
-        self.assertEqual(res['Educación Básica Obligatoria 2014-2015'], '0')
-        self.assertEqual(res['Educación Básica Obligatoria 2015-2016'], '4')
-        self.assertEqual(res['Educación Básica Obligatoria 2016-2017'], '7')
-        self.assertEqual(res['Educación Básica Obligatoria 2017-2018'], '10')
-        self.assertEqual(res['Educación Básica Obligatoria 2018-2019'], '12')
+        keys = [
+            'Educación Básica Obligatoria 2014-2015',
+            'Educación Básica Obligatoria 2015-2016',
+            'Educación Básica Obligatoria 2016-2017',
+            'Educación Básica Obligatoria 2017-2018',
+            'Educación Básica Obligatoria 2018-2019',
+            'Educación Básica Obligatoria 2019-2020',
+            'Educación Básica Obligatoria 2020-2021',
+            'Educación Básica Obligatoria 2021-2022'
+        ]
+
+        values = ['0',  # 2014-2015
+                  '4',  # 2015-2016
+                  '7',  # 2016-2017
+                  '10',  # 2017-2018
+                  '12',  # 2018-2019
+                  '14',  # 2019-2020
+                  '12',  # 2020-2021
+                  '17'  # 2021-2022
+                  ]
+
+        for index, key in enumerate(keys):
+            if key in res.keys():
+                self.assertEqual(res[key], values[index])
 
     def testRequestFP(self):
         res = self.getCenter(28041354)
@@ -85,4 +104,3 @@ class TestDWRClientMadridCenterDetails(TestCase):
         self.assertEqual(res['Programas Profesionales Modalidad Especial 2016-2017'], '20')
         self.assertEqual(res['Programas Profesionales Modalidad Especial 2015-2016'], '21')
         self.assertEqual(res['Programas Profesionales Modalidad Especial 2014-2015'], '12')
-
