@@ -77,8 +77,12 @@ class TestDWRClientMadridCenterDetails(TestCase):
 
         self.assertIsNotNone(res)
         self.assertEqual(res['FP GM 2018-2019'], '71')
-        self.assertEqual(res['FP GS 2018-2019'], '0')
+        # On Jauary 12th, 2023 it's NOT returning values for FP GS
+        # self.assertEqual(res['FP GS 2018-2019'], '0')
         self.assertEqual(res['FPB 2018-2019'], '64')
+        self.assertEqual(res['FPB 2019-2020'], '44')
+        self.assertEqual(res['FPB 2020-2021'], '68')
+        self.assertEqual(res['FPB 2021-2022'], '65')
 
     def testRequestPCPI(self):
         res = self.getCenter(28041354)
