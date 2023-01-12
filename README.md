@@ -3,12 +3,12 @@ Preparación de datos para analizar la distribución de becas por Centro en la C
 
 > **NOTA**: La Comunidad de Madrid ha cambiado el dominio que utiliza a finales de 2022. 
 > Antes utilizaba la URL **gestiona3.madrid.org**, ahora 
-> utiliza el dominio **gestiona.comunidad.madrid**
+> utiliza el dominio **gestiona.comunidad.madrid**. También se ha sustituido **http** por **htpps**
 
 ## Origen de los datos
 
 ### Datos de Centros
-* **Datos centros**: están sacados de la web. Cómo se obtiene (están todos los centros, se podría filtrar)
+* **Datos centros**: están sacados de la web. Cómo se obtiene (están todos los centros, se puede filtrar)
 1. [Buscador de Colegios (Comunidad de Madrid) (A partir de 2023)](https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarConsultaGeneral.icm)
 2. Se marca `¿Quieres incluir otros criterios?`
 3. Marco las 5 zonas en `¿EN QUÉ ZONA?` 

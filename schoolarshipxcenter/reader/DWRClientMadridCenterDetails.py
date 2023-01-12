@@ -6,7 +6,6 @@ from schoolarshipxcenter.reader.DWRClient import DWRClient
 
 
 class DWRClientMadridCenterDetails(DWRClient):
-
     URL_BASE = "https://gestiona.comunidad.madrid/wpad_pub/dwr/exec/GraficasDWRAccion.obtenerGrafica.dwr"
 
     def __init__(self, center_id, url=None):
@@ -115,8 +114,8 @@ class DWRClientMadridCenterDetails(DWRClient):
         self.add_string_param("c0-e2", "TODO")
         self.add_string_param("c0-e3", 1)
         self.add_string_param("c0-e4", 1)
-        param0 = "Object:{cdCentro:reference:c0-e1, cdnivelEducativo:reference:c0-e2, cdGrafica:reference:c0-e3, " \
-                 "tipoGrafica:reference:c0-e4} "
+        param0 = "{cdCentro:reference:c0-e1, cdnivelEducativo:reference:c0-e2, cdGrafica:reference:c0-e3, " \
+                 "tipoGrafica:reference:c0-e4}"
         self.add_object_param("c0-param0", param0)
         self.add_param("xml", "true")
 
