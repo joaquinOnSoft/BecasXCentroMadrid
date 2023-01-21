@@ -115,8 +115,14 @@ El programa acepta los siguientes parámetros:
  
 Ejemplo de invocación:
 
-```
+**Windows**
+```console
 python.exe MadridCenterDetailGroup.py -i resources\07-01-2023-(408)-utf8.csv -o resources\output\07-01-2023-(408)-utf8-extended-gps.csv
+```
+
+**Linux (ubuntu)**
+```console
+python3 MadridCenterDetailGroup.py -i "resources/07-01-2023-(408)-utf8.csv" -o "resources/output/07-01-2023-(408)-utf8-extended-gps.csv"
 ```
 
 ### Cruce de datos de centros con importe de becas
@@ -134,6 +140,12 @@ El programa acepta los siguientes parámetros:
  
 Ejemplo de invocación:
 
-```
+**Windows**
+```console
 python.exe MadridCenterGrantDetail.py -c <centers_file> -g <grant_file> -o output
+```
+
+**Linux (ubuntu)**
+```console
+python3 MadridCenterGrantDetail.py -c <centers_file> -g <grant_file> -o output
 ```
