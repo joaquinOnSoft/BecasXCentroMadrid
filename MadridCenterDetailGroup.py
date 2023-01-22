@@ -10,8 +10,8 @@ def print_help():
     print('\tMadridCenterDetailGroup.py -i <input_file> -o <output_file>')
     print('where:')
     print('\t-h: Print this help')
-    print('\t-i: (Mandatory) input file (csv with a list of Centers (Schools, High schools...')
-    print('\t-o: (Mandatory) output file (csv file which will contains extended information for each center')
+    print('\t-i --input: (Mandatory) input file (csv with a list of Centers (Schools, High schools...')
+    print('\t-o --output: (Mandatory) output file (csv file which will contains extended information for each center')
 
 
 def main(argv):
@@ -19,13 +19,13 @@ def main(argv):
     output_file = None
 
     try:
-        opts, args = getopt.getopt(argv, "hi:o:", ["input=", "output="])
+        opts, args = getopt.getopt(argv, "hi:o:", ["help", "input=", "output="])
     except getopt.GetoptError:
         print_help()
         sys.exit(2)
 
     for opt, arg in opts:
-        if opt == '-h':
+        if opt in ("-h", "--help"):
             print_help()
             sys.exit()
         elif opt in ("-i", "--input"):

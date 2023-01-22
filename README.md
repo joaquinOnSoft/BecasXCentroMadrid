@@ -8,7 +8,8 @@ Preparación de datos para analizar la distribución de becas por Centro en la C
 ## Origen de los datos
 
 ### Datos de Centros
-**Datos centros**: están sacados de la web. Cómo se obtiene (están todos los centros, se puede filtrar)
+**Datos centros**: están sacados de la web. ¿Cómo se obtiene? En el buscador de Colegios de Comunidad de Madrid están todos los centros, se puede filtrar. Tan solo debemos seguir los siguientes pasos:
+
 1. [Buscador de Colegios (Comunidad de Madrid) (A partir de 2023)](https://gestiona.comunidad.madrid/wpad_pub/run/j/MostrarConsultaGeneral.icm)
 2. Se marca `¿Quieres incluir otros criterios?`
 3. Marco las 5 zonas en `¿EN QUÉ ZONA?` 
@@ -32,7 +33,7 @@ CONSULTA DE CENTROS Y SERVICIOS EDUCATIVOS;;;;;;;;;;;;;;
 
    Así el fichero resultante tiene este aspecto:
 
-```
+```csv
 AREA TERRITORIAL;CODIGO CENTRO;TIPO DE CENTRO;CENTRO;DOMICILIO;MUNICIPIO;DISTRITO MUNICIPAL;COD. POSTAL;TELEFONO;FAX;EMAIL;EMAIL2;TITULARIDAD
 Madrid-Oeste;28060646;EEI;ACHALAY;Avenida De Isabel De Farnesio, 14 ;Boadilla del Monte;-;28660;916326518;-;eei.achalay.boadilla@educa.madrid.org;achalay-@hotmail.com;Público;
 Madrid-Este;28063027;EEI;ACUARELA;Avenida Del Somorrostro, 193 ;San Fernando de Henares;-;28830;916694580;-;eei.acuarela.sanfernando@educa.madrid.org;-;Público;
@@ -85,7 +86,29 @@ Adicionalmente se obtienen las coordenadas de latitud y longitud a partir de la 
  Se utiliza para hacer el geocoding inverso y obtener las coordenadas 
  a partir de la dirección del centro. **Hay que añadir un API valida para que funcione correctamente**
 
-### Datos de Renta
+### Cuantías de las becas
+
+La información sobre las cuantías de las becas ha sido compartida por la Comunidad de Madrid mediante petición de transparencia realizada por @Fiquipedia (un heroe sin capa).
+
+El fichero de cuantias de becas es un `csv` codificado en `UTF-8` con dos columnas:
+
+   * **CÓDIGO DE CENTRO**
+   * **CUANTÍA DE LAS BECAS** expresada en euros
+
+Un fichero de este tipo tendría un aspecto dimilar a esto:
+
+```csv
+CÓDIGO DE CENTRO;CUANTÍA DE LAS BECAS
+28000406;3000
+28000406;3000
+28000406;3000
+28000406;3000
+
+...
+
+```
+
+### Datos de Renta (No usado - Incluido en la lista de pendientes)
 
 Los datos de la **Renta por persona** y **Renta por hogar** se han sacado de:
  
@@ -148,4 +171,51 @@ python.exe MadridCenterGrantDetail.py -c <centers_file> -g <grant_file> -o outpu
 **Linux (ubuntu)**
 ```console
 python3 MadridCenterGrantDetail.py -c <centers_file> -g <grant_file> -o output
+```
+
+## Preparación de un servidor Ubuntu para ejecutar el programa
+
+Si queremos ejecutar la aplicación en una instancia Linux (Ubuntu) de algún hiperscaler como AWS, Google o Azure, una vez creada la instancia y tras acceder por `ssh` deberemos ejecutar los siguientes comandos:
+
+ - Actualizar el entorno
+
+```console
+apt-get update
+apt-get install python3
+apt-get install  git-all
+apt-get install nano
+```
+
+ - Decargar el código de la aplicación:
+
+```console
+git clone https://github.com/joaquinOnSoft/BecasXCentroMadrid.git
+```
+
+ - Proporcionar el API KEY del API de geocodificación de Google:
+
+```console
+cd BecasXCentroMadrid/resources
+nano grand.properties
+```
+ 
+En el editor hay que actualizar la propiedad `google.geocode.api.key`
+
+```console
+google.geocode.api.key=<GOOGLE_GEOCODE_APY_KEY>
+```
+
+ - Ejecutar las dos aplicaciones:
+
+```console
+cd ..
+
+python3 MadridCenterDetailGroup.py \
+    -i "resources/07-01-2023-(408)-utf8.csv" 
+    -o "resources/output/07-01-2023-(408)-utf8-extended-gps.csv"
+
+python3 MadridCenterGrantDetail.py \
+    -c resources/output/07-01-2023-(408)-utf8-extended-gps.csv" \
+    -g "resources/2023-01-13-BecasSegunaOportunidadCurso2021-202.csv" \
+    -o output "resources/output/07-01-2023-(408)-utf8-extended-gps-con-becas.csv"
 ```

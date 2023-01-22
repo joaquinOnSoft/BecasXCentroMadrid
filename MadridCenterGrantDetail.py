@@ -21,7 +21,7 @@ def main(argv):
     output_file = None
 
     try:
-        opts, args = getopt.getopt(argv, "hc:g:o:", ["center=", "grant=", "output="])
+        opts, args = getopt.getopt(argv, "hc:g:o:", ["help", "center=", "grant=", "output="])
     except getopt.GetoptError:
         print_help()
         sys.exit(2)
