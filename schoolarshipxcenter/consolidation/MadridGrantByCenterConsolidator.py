@@ -32,10 +32,10 @@ class MadridGrantByCenterConsolidator:
                     del center[None]
 
                     amount = grant_dict[grant[MadridGrantByCenterConsolidator.FIELD_CENTER_ID]]
-                    if amount is not None:
+                    if amount is None:
                         amount = 0
-                    else:
-                        center[MadridGrantByCenterConsolidator.FIELD_GRANT_AMOUNT] = amount
+
+                    center[MadridGrantByCenterConsolidator.FIELD_GRANT_AMOUNT] = amount
 
                 reader = CSVWriter(output_file, output_delimiter, csv.QUOTE_ALL)
                 reader.write(centers)
