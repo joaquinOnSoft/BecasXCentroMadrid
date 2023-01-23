@@ -38,7 +38,7 @@ def main(argv):
             output_file = arg
 
     if center_file is not None and grant_file is not None and output_file is not None:
-        MadridGrantByCenterConsolidator.process(center_file, ";", grant_file, ";", output_file)
+        MadridGrantByCenterConsolidator.process(center_file, ";", grant_file, ";", output_file, ";")
     else:
         print_help()
 
