@@ -211,7 +211,7 @@ google.geocode.api.key=<GOOGLE_GEOCODE_APY_KEY>
 cd ..
 
 python3 MadridCenterDetailGroup.py \
-    -i "resources/07-01-2023-(408)-utf8.csv" 
+    -i "resources/07-01-2023-(408)-utf8.csv" \ 
     -o "resources/output/07-01-2023-(408)-utf8-extended-gps.csv"
 
 python3 MadridCenterGrantDetail.py \
