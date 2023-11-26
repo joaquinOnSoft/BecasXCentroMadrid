@@ -34,6 +34,7 @@ def suite():
     test_suite.addTest(TestMadridCenterURLReader('test_read_non_existing_center'))
     test_suite.addTest(TestMadridCenterURLReader('test_read_private_owner'))
     test_suite.addTest(TestMadridCenterURLReader('test_read_private_concerted_owner'))
+    test_suite.addTest(TestMadridCenterURLReader('test_request_differentiated_education'))
 
     return test_suite
 

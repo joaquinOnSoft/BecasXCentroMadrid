@@ -7,7 +7,7 @@ class CSVWriter:
         """
         Write a CSV file from a list of dictionaries
         :param file: CSV file
-        :param delimiter: field delimiter. By default ','
+        :param delimiter: field delimiter. By default, ','
         :param quoting: Flag to indicate if the field value must be included between quotes
         SEE  https://realpython.com/python-csv/
         """
@@ -22,8 +22,10 @@ class CSVWriter:
             with open(self.file, 'w', encoding='utf-8', newline='') as f:
 
                 fieldnames = []
-                for key in rows[0].keys():
-                    fieldnames.append(key)
+                for row in rows:
+                    for key in row.keys():
+                        if key not in fieldnames:
+                            fieldnames.append(key)
 
                 print("----------------------------------------")
                 print(fieldnames)

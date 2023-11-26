@@ -129,3 +129,13 @@ class TestDWRClientMadridCenterDetails(TestCase):
 
         self.__validate(keys, values, res)
 
+    def testRequestProgramasProfesionalesModalidadGeneral (self):
+        res = self.getCenter(28056023)
+
+        self.assertIsNotNone(res)
+        self.assertEqual(res['Programas Profesionales Modalidad General 2019-2020'], '35')
+        self.assertEqual(res['Programas Profesionales Modalidad General 2020-2021'], '37')
+        self.assertEqual(res['Programas Profesionales Modalidad General 2021-2022'], '56')
+        # self.assertEqual(res['PCPI: Módulos Voluntarios 2015-2016'], '0')
+        # self.assertEqual(res['PCPI: Módulos Voluntarios 2014-2015'], '12')
+

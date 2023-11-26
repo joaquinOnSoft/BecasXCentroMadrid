@@ -9,6 +9,8 @@ class MadridCenterURLReader(URLReader):
     LABEL_MAIL = "E-MAIL"
     LABEL_URL = "URL"
     LABEL_OWNER = "TITULAR"
+    LABEL_DIFFERENTIATED = "EDUC. DIFERENCIADA"
+    LABEL_SEGREGATED = "SEGREGADA"
 
     VALUE_OWNERSHIP_PRIVATE = "Privado"
     VALUE_OWNERSHIP_PRIVATE_CONCERTED = "Privado Concertado"
@@ -21,7 +23,9 @@ class MadridCenterURLReader(URLReader):
 
         data = {self.LABEL_URL: self.url,
                 self.LABEL_MAIL: "",
-                self.LABEL_OWNER: ""}
+                self.LABEL_OWNER: "",
+                self.LABEL_SEGREGATED: "NO",
+                self.LABEL_DIFFERENTIATED: ""}
 
         mail_list = re.findall(r"<input TYPE='hidden' name='tlMail' value='(.*)'\/>", html)
         if mail_list is not None and len(mail_list) > 0:
@@ -43,6 +47,14 @@ class MadridCenterURLReader(URLReader):
 
                     if tag == self.VALUE_OWNERSHIP_PRIVATE or tag == self.VALUE_OWNERSHIP_PRIVATE_CONCERTED:
                         prev_tag_owner = True
+
+        differentiated = re.findall(r"<input type=\"hidden\" name=\"tlEdDiferenciada\" value=\"(.*)\" \/>", html)
+        if differentiated is not None and len(differentiated) > 0:
+            if differentiated[0] is not None and differentiated[0] != "null":
+                data[self.LABEL_DIFFERENTIATED] = differentiated[0]
+                data[self.LABEL_SEGREGATED] = "SI"
+        else:
+            data[self.LABEL_DIFFERENTIATED] = ""
 
         return data
 
